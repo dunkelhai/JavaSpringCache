@@ -1,17 +1,27 @@
 package com.dunkelhai.javaspringcache;
 
-import org.springframework.cache.annotation.Cacheable;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class CacheController {
 
+    private final CacheService cacheService;
+
+    @Autowired
+    public CacheController(CacheService cacheService) {
+        this.cacheService = cacheService;
+    }
+
     @GetMapping("/getCacheValue")
-    @Cacheable("senacCache")
     public String getCacheValue(@RequestParam String key) {
-        return "Valor para " + key;
+        return cacheService.getValue(key);
+    }
+
+    @PostMapping("/clearCache")
+    public void clearCache() {
+        cacheService.clearCache();
     }
 }
+
 
