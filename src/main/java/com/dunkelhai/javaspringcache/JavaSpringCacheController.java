@@ -4,23 +4,23 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-public class CacheController {
+public class JavaSpringCacheController {
 
-    private final CacheService cacheService;
+    private final JavaSpringCacheService javaSpringCacheService;
 
     @Autowired
-    public CacheController(CacheService cacheService) {
-        this.cacheService = cacheService;
+    public JavaSpringCacheController(JavaSpringCacheService javaSpringCacheService) {
+        this.javaSpringCacheService = javaSpringCacheService;
     }
 
     @GetMapping("/getCacheValue")
     public String getCacheValue(@RequestParam String key) {
-        return cacheService.getValue(key);
+        return javaSpringCacheService.getValue(key);
     }
 
     @PostMapping("/clearCache")
     public void clearCache() {
-        cacheService.clearCache();
+        javaSpringCacheService.clearCache();
     }
 }
 
