@@ -7,13 +7,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class CacheService {
 
-    @Cacheable(value = "myCache", key = "#key") // Define um cache chamado "myCache" e uma chave dinâmica
+    @Cacheable(value = "myCache", key = "#key")
     public String getValue(String key) {
-        // Simule uma consulta demorada ou obtenha dados do banco de dados aqui
         return "Valor para " + key;
     }
 
-    @CacheEvict(value = "myCache", allEntries = true) // Limpa todo o cache "myCache"
+    @CacheEvict(value = "myCache", allEntries = true)
     public void clearCache() {
     }
 }
